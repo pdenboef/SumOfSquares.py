@@ -41,7 +41,7 @@ class SOSProblem(Problem):
         '''Converts a sympy affine expression to a picos expression, converting
         numeric values to floats, and sympy symbols to picos variables.
         '''
-        if expr.func == sp.Symbol:
+        if expr.func == sp.Symbol or expr.func == sp.matrices.expressions.matexpr.MatrixElement:
             return self.sym_to_var(expr)
         elif expr.func == sp.Add:
             return sum(map(self.sp_to_picos, expr.args))
